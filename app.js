@@ -1,6 +1,9 @@
 import express from "express";
+import screenshotRouter from "./router/screenshot.js";
 
 const app = express();
+
+app.use("/screenshot", screenshotRouter);
 
 app.use((req, res, next) => {
   res.sendStatus(404);
