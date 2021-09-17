@@ -1,7 +1,10 @@
 import express from "express";
+import cors from "cors";
+
 import screenshotRouter from "./router/screenshot.js";
 
 const app = express();
+app.use(cors());
 
 app.use("/screenshot", screenshotRouter);
 
