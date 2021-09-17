@@ -16,4 +16,4 @@ app.use((error) => {
   console.log(error);
   res.sendStatus(500);
 });
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 8080);
