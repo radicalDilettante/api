@@ -2,12 +2,15 @@ import express from "express";
 import puppeteer from "puppeteer";
 
 const router = express.Router();
+const chromeOptions = {
+  headless: true,
+  defaultViewport: null,
+  args: ["--incognito", "--no-sandbox", "--single-process", "--no-zygote"],
+};
 
 router.get("/", async (req, res) => {
   try {
-    const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    });
+    const browser = await puppeteer.launch(chromeOptions);
     const page = await browser.newPage();
     await page.goto(req.query.url);
     const image = await page.screenshot({ fullPage: true });
