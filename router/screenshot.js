@@ -12,13 +12,14 @@ router.get("/", async (req, res) => {
   try {
     const browser = await puppeteer.launch(chromeOptions);
     const page = await browser.newPage();
-    await page.goto(req.query.url);
+    await page.goto(req.query.url, { waitUntil: "networkidle2" });
     const image = await page.screenshot({ fullPage: true });
     await browser.close();
     res.set("Content-Type", "image/png");
     res.send(image);
   } catch (error) {
     console.log(error);
+    res.sendStatus(404);
   }
 });
 
