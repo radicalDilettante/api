@@ -18,6 +18,7 @@ router.get("/", async (req, res) => {
     res.set("Content-Type", "image/png");
     res.send(image);
   } catch (error) {
+    await browser.close();
     console.log(error);
     res.sendStatus(404);
   }
