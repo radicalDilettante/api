@@ -1,16 +1,15 @@
 import express from "express";
 import cors from "cors";
 import http from "http";
-
 import screenshotRouter from "./router/screenshot.js";
 
 const app = express();
 app.use(cors());
-
-setInterval(function () {
-  http.get("https://apiwayne.herokuapp.com/");
-}, 600000);
-
+app.use(() => {
+  setInterval(function () {
+    http.get("https://apiwayne.herokuapp.com/");
+  }, 600000);
+});
 app.use("/screenshot", screenshotRouter);
 
 app.use((req, res, next) => {
