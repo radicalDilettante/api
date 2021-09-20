@@ -1,13 +1,15 @@
 import express from "express";
+import fs from "fs";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const image = new Image();
-    image.src = req.query.url;
-    res.set("Content-Type", "image/png");
-    res.send(image);
+    fs.readFile(req.query.url, (error, data) => {
+      if (error) throw error;
+      res.set("Content-Type", "image/png");
+      res.send(data);
+    });
   } catch (error) {
     await browser.close();
     console.log(error);
