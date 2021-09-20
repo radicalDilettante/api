@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
     fs.readFile(req.query.url, (error, data) => {
       if (error) throw error;
       res.set("Content-Type", "image/png");
+      res.header("Access-Control-Allow-Origin", "*");
       res.send(data);
     });
   } catch (error) {

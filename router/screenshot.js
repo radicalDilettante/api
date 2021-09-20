@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
     const image = await page.screenshot({ fullPage: true });
     await browser.close();
     res.set("Content-Type", "image/png");
+    res.header("Access-Control-Allow-Origin", "*");
     res.send(image);
   } catch (error) {
     await browser.close();
