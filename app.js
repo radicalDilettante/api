@@ -4,7 +4,7 @@ import screenshotRouter from "./router/screenshot.js";
 import imageRouter from "./router/image.js";
 
 const app = express();
-app.use(cors(), { mode: "same-origin" });
+app.use(cors());
 app.use("/screenshot", screenshotRouter);
 app.use("/image", imageRouter);
 
