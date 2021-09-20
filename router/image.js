@@ -1,5 +1,5 @@
 import express from "express";
-import fs from "fs";
+import request from "request";
 
 const router = express.Router();
 
@@ -8,9 +8,8 @@ router.get("/", async (req, res) => {
     if (error) throw error;
     res.set("Content-Type", "image/png");
     res.header("Access-Control-Allow-Origin", "*");
-    req.pipe(request(req.query.url)).pipe(res);
+    request.get(req.query.url).pipe(res);
   } catch (error) {
-    await browser.close();
     console.log(error);
     res.sendStatus(404);
   }
