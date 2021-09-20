@@ -9,8 +9,8 @@ const chromeOptions = {
 };
 
 router.get("/", async (req, res) => {
+  const browser = await puppeteer.launch(chromeOptions);
   try {
-    const browser = await puppeteer.launch(chromeOptions);
     const page = await browser.newPage();
     await page.goto(req.query.url, { waitUntil: "networkidle2" });
     const image = await page.screenshot({ fullPage: true });
