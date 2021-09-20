@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    if (error) throw error;
     res.set("Content-Type", "image/png");
     res.header("Access-Control-Allow-Origin", "*");
     request.get(req.query.url).pipe(res);
