@@ -5,12 +5,10 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    fs.readFile(req.query.url, (error, data) => {
-      if (error) throw error;
-      res.set("Content-Type", "image/png");
-      res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
-    });
+    if (error) throw error;
+    res.set("Content-Type", "image/png");
+    res.header("Access-Control-Allow-Origin", "*");
+    req.pipe(request(req.query.url)).pipe(res);
   } catch (error) {
     await browser.close();
     console.log(error);
